@@ -4,15 +4,17 @@ import ReactDOM from 'react-dom'
 // import { Provider } from 'react-redux'
 // import Counter from './components/Counter'
 // import App from './App';
-import App from './App';
+// import App from './App';
+import AppNew from './AppNew';
+import store from './store'
 
-import { createStore } from 'redux'
+// import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import Counter from './components/Counter'
-import counterReducer from './reducers/counterReducer'
+// import Counter from './components/Counter'
+// import counterReducer from './reducers/counterReducer'
 
-const store = createStore(counterReducer)
+// const store = createStore(counterReducer)
 // import counterReducer from './reducers/counterReducer'
 // const store = createStore(counterReducer)
 
@@ -21,8 +23,8 @@ const store = createStore(counterReducer)
 // console.log(store.getState())
 ReactDOM.render(
   <Provider store={store}>    
-  <Counter />
-  <App/>
+  <AppNew />
+  
 </Provider>,
   
   

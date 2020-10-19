@@ -11,88 +11,69 @@ import { bindActionCreators } from 'redux'
 
 import fetchPosts from '../src/Actions/postActions'
 import likePosts from '../src/Actions/likeActions'
+import unlikePosts from '../src/Actions/unlikeActions'
 // const onLike = (post) => (console.log(post));
 // const
-const onUnlike = (post) => ({ type: 'UNLIKE_POST', post });
+// const 
 
 const Post = (props) => (
-    <div style={ {border:'1px solid #000', margin: 5} }>
-      <strong>Post #{props.post.id}</strong>
-      {props.liked ? (
-        <button onClick={()=>props.onUnlike(props.post)}>
-          Unlike
-        </button>
-      ) : (
-        <button onClick={()=>props.onLike(props.post)}>
+  <div style={{ border: '1px solid #000', margin: 5 }}>
+    <strong>Post #{props.post.id}</strong>
+    {props.liked ? (
+      <button onClick={() => props.onUnlike(props.post)}>
+        Unlike
+      </button>
+    ) : (
+        <button onClick={() => props.onLike(props.post)}>
           Like
         </button>
       )}
 
     <p>{props.post.body}</p>
 
-      <span>({props.likes} likes)</span>
-    </div>
-  )
-
-//   const PostsWithLikes = connect(
-//     function(state){
-//       return {
-//         posts: state.posts,
-//         postsLikes: state.like,
-//         postsLikeCounters: state.postsLikeCounters
-//       };
-//     },
-//     {
-//       onLike,
-//       onUnlike
-//     }
-//   )(Posts)
+    <span>({props.likes} likes)</span>
+  </div>
+)
 
 
 
 
 
 function mapStateToProps(state) {
-    console.log(state)
-    // const {posts}  = state
-    console.log(state.posts.posts)
-    return {
-        postsAsProps:state.posts
-    }
-   
+  console.log(state)
+  
+  console.log(state.posts.posts)
+  return {
+    postsAsProps: state.posts
+  }
+
 
 }
 export class AppNew extends Component {
-    // mapDispatchToProps = dispatch => {
-    //     return bindActionCreators({
-    //         onLike,
-    //         // dislike,
-        
-    //     },
-    //         dispatch
-    //     )
-    // }
-   
-    componentWillMount(){
-      if(! this.props.postsAsProps.fetched){
-        this.props.dispatch(fetchPosts())
-      }
+ 
+  componentWillMount() {
+    if (!this.props.postsAsProps.fetched) {
+      this.props.dispatch(fetchPosts())
     }
-    onLike(post){
-      (this.props.dispatch(likePosts(post)))
-     }
-    render() {
-        const {posts} = this.props.postsAsProps
+  }
+  onLike(post) {
+    (this.props.dispatch(likePosts(post)))
+  }
+  onUnlike(post){
+   (this.props.dispatch(unlikePosts(post)));
+  }
+  render() {
+    const { posts } = this.props.postsAsProps
 
 
-        // mapStateToProps()
-        // console.log(this.props)
-        // console.log("asdas")
-        console.log(posts)
-        return (
-            <div>
-            <div>
-            { /*  {posts.map((content, index) => {
+    // mapStateToProps()
+    // console.log(this.props)
+    // console.log("asdas")
+    console.log(posts)
+    return (
+      <div>
+        <div>
+          { /*  {posts.map((content, index) => {
 
                 return <div className="card col-lg-2 col-md-3 col-6">
                     <div className="card-body">
@@ -112,42 +93,42 @@ export class AppNew extends Component {
             }
             <div>
             */}
-            </div>
-            {posts.map(post => (
-                <div style={ {border:'1px solid #000', margin: 5} }>
-                <strong>Post #{post.id}</strong>
-             {/* {post.liked ? (
-                //   <button onClick={()=>onUnlike(post)}>
-                //     Unlike
-                //   </button>
-                // ) : ( */} 
-                  <button onClick={()=>this.onLike(post)}>
-                    Like
+        </div>
+        {posts.map(post => (
+          <div style={{ border: '1px solid #000', margin: 5 }}>
+            <strong>Post #{post.id}</strong>
+             {post.liked ? (
+                  <button onClick={()=>this.onUnlike(post)}>
+                    Unlike
+                  </button>
+                ) : (
+            <button onClick={() => this.onLike(post)}>
+              Like
                   </button>
                 )}
-          
-              <p>{post.body}</p>
-          
-                <span>({post.like} likes)</span>
-              </div>
-            //   <Post 
-            //     key={post.id}
-            //     post={post}
-            //     likes={post.like}
-            //     liked={post.like}
-            //     onLike={onLike}
-            //     onUnlike={onUnlike} />
-            // 
+
+            <p>{post.body}</p>
+
+            <span>({post.like} likes)</span>
+          </div>
+          //   <Post 
+          //     key={post.id}
+          //     post={post}
+          //     likes={post.like}
+          //     liked={post.like}
+          //     onLike={onLike}
+          //     onUnlike={onUnlike} />
+          // 
 
 
 
 
-            ) ) }
-                <h1> FETCHED </h1>
-            </div>
-    
-        )
-    }
+        ))}
+        <h1> FETCHED </h1>
+      </div>
+
+    )
+  }
 }
 
 export default connect(mapStateToProps)(AppNew)

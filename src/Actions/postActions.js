@@ -28,6 +28,9 @@ export default function fetchPosts() {
                     var o = Object.assign({}, el);
                     o.like = 0;
                     o.dislike = 0;
+                    o.liked = false;
+                    o.disliked= false;
+
                     return o;
                 })
                 dispatch({ type: "FETCH_COMPLETE", payload: result })

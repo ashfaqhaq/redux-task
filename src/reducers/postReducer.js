@@ -36,18 +36,22 @@ const initialState = {
         // var current_state = [...state , {actions.payload.like:value}] ;
          
          value.like= value.like+1;
+         value.liked= true;
          console.log(value)
         return {
           ...state,
           };
       case 'UNLIKE_POST':
-       value = state[actions.post.id] || 0;
-  
+        value = actions.payload ;
+        // const 
+        // var current_state = [...state , {actions.payload.like:value}] ;
+         
+         value.like= value.like-1;
+         value.liked= false;
+         console.log(value)
         return {
           ...state,
-          [actions.post.id]: Math.max(value - 1, 0)
-        };
-        
+          };
       default:
         return state;
        

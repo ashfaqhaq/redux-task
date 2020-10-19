@@ -74,7 +74,9 @@ export class AppNew extends Component {
     // }
    
     componentWillMount(){
+      if(! this.props.postsAsProps.fetched){
         this.props.dispatch(fetchPosts())
+      }
     }
     onLike(post){
       (this.props.dispatch(likePosts(post)))

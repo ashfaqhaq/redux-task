@@ -175,7 +175,7 @@ export class App extends Component {
 
 
 
-        <h1> FETCHED </h1>
+        
       </div>
 
     )

@@ -1,6 +1,3 @@
-// import Actions from "../Actions";
-
-import { bindActionCreators } from "redux";
 
 const initialState = {
     fetching: false,
@@ -36,7 +33,7 @@ const initialState = {
         // var current_state = [...state , {actions.payload.like:value}] ;
          
          value.like= value.like+1;
-         value.liked= true;
+         value.isLiked= true;
          console.log(value)
         return {
           ...state,
@@ -47,7 +44,7 @@ const initialState = {
         // var current_state = [...state , {actions.payload.like:value}] ;
          
          value.like= value.like-1;
-         value.liked= false;
+         value.isLiked= false;
          console.log(value)
         return {
           ...state,

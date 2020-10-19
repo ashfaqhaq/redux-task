@@ -62,6 +62,10 @@ export class AppNew extends Component {
   onUnlike(post){
    (this.props.dispatch(unlikePosts(post)));
   }
+
+  handleDetails(props){
+      console.log(props)
+  }
   render() {
     const { posts } = this.props.postsAsProps
 
@@ -96,34 +100,22 @@ export class AppNew extends Component {
         </div>
         {posts.map(post => (
           <div style={{ border: '1px solid #000', margin: 5 }}>
-            <strong>Post #{post.id}</strong>
-             {post.liked ? (
-                  <button onClick={()=>this.onUnlike(post)}>
-                    Unlike
-                  </button>
-                ) : (
-            <button onClick={() => this.onLike(post)}>
-              Like
-                  </button>
-                )}
-
-            <p>{post.body}</p>
-
-            <span>({post.like} likes)</span>
+          <h6 onClick={()=>this.handleDetails(post)}>{post.title} </h6>
           </div>
-          //   <Post 
+          ))}
+          
+             {/*<Post
           //     key={post.id}
           //     post={post}
           //     likes={post.like}
           //     liked={post.like}
           //     onLike={onLike}
           //     onUnlike={onUnlike} />
-          // 
+          // */} 
 
 
 
 
-        ))}
         <h1> FETCHED </h1>
       </div>
 

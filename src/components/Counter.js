@@ -13,7 +13,8 @@ class Counter extends Component {
     static mapDispatchToProps = dispatch => {
         return bindActionCreators({
             increaseCount,
-            decreaseCount
+            decreaseCount,
+        
         },
             dispatch
         )

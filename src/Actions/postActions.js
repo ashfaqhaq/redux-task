@@ -28,8 +28,8 @@ export default function fetchPosts() {
                     var o = Object.assign({}, el);
                     o.like = 0;
                     o.dislike = 0;
-                    o.liked = false;
-                    o.disliked= false;
+                    o.isLiked = false;
+                    o.isDisliked= false;
 
                     return o;
                 })

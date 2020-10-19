@@ -1,6 +1,3 @@
-// import Actions from "../Actions";
-
-import { bindActionCreators } from "redux";
 
 const initialState = {
     fetching: false,
@@ -36,7 +33,7 @@ const initialState = {
         // var current_state = [...state , {actions.payload.like:value}] ;
          
          value.like= value.like+1;
-         value.liked= true;
+         value.isLiked= true;
          console.log(value)
         return {
           ...state,
@@ -47,11 +44,40 @@ const initialState = {
         // var current_state = [...state , {actions.payload.like:value}] ;
          
          value.like= value.like-1;
-         value.liked= false;
+         value.isLiked= false;
          console.log(value)
         return {
           ...state,
           };
+
+case "DISLIKE_POST":
+            console.log('worasdling');
+        // console.log(actions.payload.like)
+        // console.log(state[actions.payload])
+        value = actions.payload ;
+        // const 
+        // var current_state = [...state , {actions.payload.like:value}] ;
+         
+         value.dislike= value.dislike-1;
+         value.isDisliked= true;
+         console.log(value)
+        return {
+          ...state,
+          };
+      case 'UNDISLIKE_POST':
+        value = actions.payload ;
+        // const 
+        // var current_state = [...state , {actions.payload.like:value}] ;
+         
+         value.dislike= value.dislike+1;
+         value.isDisliked= false;
+         console.log(value)
+        return {
+          ...state,
+          };
+
+
+
       default:
         return state;
        

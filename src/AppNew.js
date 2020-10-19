@@ -19,36 +19,42 @@ import undislikePosts from '../src/Actions/unDislikeActions'
 // const
 // const 
 
-const Post = (props) => (
-  <div style={{ border: '1px solid #000', margin: 5 }}>
-    <strong>Post #{props.post.id}</strong>
+const Post = (props) =>(
+  <div class="card container pt-3" style={{width: '30rem'}}>
+    <strong>Post #{props.post.id} {props.post.title} </strong>
+       <div class="card-body ">
+       <strong>  Content</strong>
+    <p>{props.post.body}</p>
+    <div className="btn-group">
     {props.liked ? (
-      <button onClick={() => props.onUnlike(props.post)}>
-        Unlike
+     
+      <button class="btn btn-outline-primary mx-3" style={{width:'10rem'}} onClick={() => props.onUnlike(props.post)}>
+        Remove Like <span class="badge badge-light ml-1">{props.likes}</span>
       </button>
     ) : (
-        <button onClick={() => props.onLike(props.post)}>
-          Like
+
+        <button class="btn btn-primary mx-3" style={{width:'10rem'}} onClick={() => props.onLike(props.post)}>
+          Like <span class="badge badge-light ml-1">{props.likes}</span>
         </button>
       )} 
       {props.isDisliked ? (
-        <button onClick={() => props.onUndislike(props.post)}>
-          unDislike
+        <button class="btn btn-danger mx-3" style={{width:'10rem'}} onClick={() => props.onUndislike(props.post)}>
+        
+          Remove Dislike
+          <span class="badge badge-light ml-1">{props.dislikes}</span>
         </button>
       ) : (
-          <button onClick={() => props.onDislike(props.post)}>
-           disLike
+          <button class="btn btn-outline-danger mx-3"  style={{width:'8rem'}} onClick={() => props.onDislike(props.post)}>
+           Dislike   <span class="badge badge-light ml-1">{props.dislikes}</span>
           </button>
+         
         )}
-
-
-
-
-
-    <p>{props.post.body}</p>
-
-    <span>({props.likes} likes)</span>
-    <span>({props.dislikes} likes)</span>
+        </div>
+        <div class="card-body">
+       
+      </div>
+   
+  </div>
   </div>
 )
 
@@ -112,6 +118,7 @@ export class AppNew extends Component {
     console.log(posts)
     return (
       <div>
+            <h3 class="d-flex justify-content-center mt-4">  All Posts </h3>
         <div>
           { /*  {posts.map((content, index) => {
 
@@ -133,13 +140,18 @@ export class AppNew extends Component {
             }
             <div>
             */}
+
+
+          
+
         </div>
         {posts.map(post => (
-          <div style={{ border: '1px solid #000', margin: 5 }}>
+          <div style={{ margin: 5 }}>
           
              {<Post
               key={post.id}
               post={post}
+              title ={post.title}
               likes={post.like}
               liked={post.isLiked}
               dislikes={post.dislike}

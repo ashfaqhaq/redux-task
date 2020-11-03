@@ -13,21 +13,21 @@ import reducer from "./reducers"
 
 
 
-const persistedState = localStorage.getItem('reduxState')
+/*const persistedState = localStorage.getItem('reduxState')
     ? JSON.parse(localStorage.getItem('reduxState'))
-    : {}
+: {}*/
 
 const middleware = applyMiddleware(thunk);
 
 
 const store = createStore(
     reducer, 
-    persistedState,
+    // persistedState,
     middleware
   )
   
-  store.subscribe(() => {
-    localStorage.setItem('reduxState', JSON.stringify(store.getState()))
-})
+//   store.subscribe(() => {
+//     localStorage.setItem('reduxState', JSON.stringify(store.getState()))
+// })
 export default store
 

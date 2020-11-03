@@ -1,7 +1,8 @@
 import {combineReducers} from 'redux';
 
-import posts from './postReducer'
+// import posts from './postReducer'
+import cartReducer from './cartReducer'
 
 export default combineReducers({
-    posts
+    cartReducer
 })

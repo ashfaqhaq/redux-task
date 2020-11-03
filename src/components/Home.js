@@ -32,6 +32,7 @@ const useStyles = makeStyles({
             props.addToCart(id); 
         }
         const classes = useStyles();
+        const inCart = props.addedItems;
         const cardItems =  props.items.map((item)=>{
             return (
                 <Card className={classes.root}>
@@ -56,6 +57,7 @@ const useStyles = makeStyles({
                       <Button color="secondary"><FastfoodIcon /> {item.calories} calories</Button>
                     </CardContent>
                   </CardActionArea>
+                  {console.log(item.id)}
                   <CardActions>
                    
                     <Button

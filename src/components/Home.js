@@ -15,8 +15,8 @@ import FastfoodIcon from '@material-ui/icons/Fastfood';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-
-
+// import { spacing } from '@material-ui/system';
+// import { shadows } from '@material-ui/system';
 
 const useStyles = makeStyles({
   root: {
@@ -25,6 +25,8 @@ const useStyles = makeStyles({
   media: {
     height: 140,
   },
+  spacing: 8,
+  
 });
   
 // class Home extends Component  {
@@ -36,10 +38,10 @@ const useStyles = makeStyles({
         
         const cardItems =  props.items.map((item)=>{
             return (
-                <Card className={classes.root}>
+                <Card className={classes.root} style={{margin:'1rem'}}  boxShadow={25}>
              
                   <CardActionArea>
-                    <CardMedia
+                    <CardMedia 
                       // className={this.classes.media}
                       className={classes.media}
                       image={item.img}

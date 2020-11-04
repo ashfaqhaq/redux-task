@@ -47,7 +47,7 @@ const handleAddQuantity = (id)=>{
                 props.items.map(item=>{
                     return(
                         // <div>
-                        <Card className={classes.root}>
+                        <Card className={classes.root} style={{margin:'1rem'}}>
                         <CardActionArea>
                           <CardMedia
                             className={classes.media}

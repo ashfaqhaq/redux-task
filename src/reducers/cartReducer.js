@@ -8,14 +8,15 @@ import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY } from '../Actions/ac
 
 const initState = {
     items: [
-        {id:1,title:'Pizza', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:300,calories:1000,img:Item1},
-        {id:2,title:'Pasta', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:360,calories:900,img: Item2},
-        {id:3,title:'Grill Sandwich', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",price:80,calories:450,img: Item3},
-        {id:4,title:'Noodle', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:120,calories:550,img:Item4},
-        {id:5,title:'Cake', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:500,calories:3000,img: Item5}
+        {id:1,title:'Pizza', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:300,calories:1000,img:Item1,inCart:false,quant:0},
+        {id:2,title:'Pasta', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:360,calories:900,img: Item2,inCart:false,quant:0},
+        {id:3,title:'Grill Sandwich', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",price:80,calories:450,img: Item3,inCart:false,quant:0},
+        {id:4,title:'Noodle', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:120,calories:550,img:Item4,inCart:false,quant:0},
+        {id:5,title:'Cake', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:500,calories:3000,img: Item5,inCart:false,quant:0}
     ],
     addedItems:[],
-    total: 0
+    total: 0,
+    cartItems :0
 
 }
 const cartReducer= (state = initState,action)=>{
@@ -28,9 +29,14 @@ const cartReducer= (state = initState,action)=>{
          if(existed_item)
          {
             addedItem.quantity += 1 
+            state.cartItems += 1
+            console.log(state.cartItems)
+            // state.quant += 1 
+            // state.items.action.id.inCart =true;
              return{
                 ...state,
-                 total: state.total + addedItem.price
+                 total: state.total + addedItem.price,
+                
                 
                   }
         }
@@ -38,11 +44,14 @@ const cartReducer= (state = initState,action)=>{
             addedItem.quantity = 1;
             //calculating the total
             let newTotal = state.total + addedItem.price 
-            
+            // state.quant += 1 
+            state.cartItems += 1
             return{
                 ...state,
                 addedItems: [...state.addedItems, addedItem],
                 total : newTotal
+              
+               
             }
             
         }
@@ -54,10 +63,13 @@ const cartReducer= (state = initState,action)=>{
         //calculating the total
         let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity )
         console.log(itemToRemove)
+        // state.quant -= 1 
+        state.cartItems -= itemToRemove.quantity
         return{
             ...state,
             addedItems: new_items,
             total: newTotal
+            
         }
     }
     //INSIDE CART COMPONENT
@@ -65,6 +77,8 @@ const cartReducer= (state = initState,action)=>{
         let addedItem = state.items.find(item=> item.id === action.id)
           addedItem.quantity += 1 
           let newTotal = state.total + addedItem.price
+          state.quant += 1 
+         
           return{
               ...state,
               total: newTotal
@@ -76,6 +90,8 @@ const cartReducer= (state = initState,action)=>{
         if(addedItem.quantity === 1){
             let new_items = state.addedItems.filter(item=>item.id !== action.id)
             let newTotal = state.total - addedItem.price
+            // state.quant -= 1 
+            state.cartItems -= 1
             return{
                 ...state,
                 addedItems: new_items,
@@ -85,9 +101,12 @@ const cartReducer= (state = initState,action)=>{
         else {
             addedItem.quantity -= 1
             let newTotal = state.total - addedItem.price
+            // state.quant -= 1 
+            state.cartItems -= 1
             return{
                 ...state,
                 total: newTotal
+                
             }
         }
         

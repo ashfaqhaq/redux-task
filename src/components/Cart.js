@@ -1,50 +1,86 @@
-import React, { Component } from 'react';
+import React, { Component ,Fragment } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { removeItem,addQuantity,subtractQuantity} from '../Actions/cartActions'
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import ExposurePlus1Icon from '@material-ui/icons/ExposurePlus1';
+import ExposureNeg1Icon from '@material-ui/icons/ExposureNeg1';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
 
-class Cart extends Component{
+import Container from '@material-ui/core/Container';
 
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+    flexGrow: 1,
+  },
+  media: {
+    height: 140,
+  },
+});
+
+
+//to substruct from the quantity
+
+
+function Cart(props) {
+    const handleSubtractQuantity = (id)=>{
+        props.subtractQuantity(id);
+    }
+    
+//to add the quantity
+const handleAddQuantity = (id)=>{
+    props.addQuantity(id);
+}
     //to remove the item completely
-    handleRemove = (id)=>{
-        this.props.removeItem(id);
-    }
-    //to add the quantity
-    handleAddQuantity = (id)=>{
-        this.props.addQuantity(id);
-    }
-    //to substruct from the quantity
-    handleSubtractQuantity = (id)=>{
-        this.props.subtractQuantity(id);
-    }
-    render(){
+
+    const classes = useStyles();
               
-        let addedItems = this.props.items.length ?
+        let addedItems = props.items.length ?
             (  
-                this.props.items.map(item=>{
+                props.items.map(item=>{
                     return(
-                       
-                        <li className="collection-item avatar" key={item.id}>
-                                    <div className="item-img"> 
-                                        <img src={item.img} alt={item.img} className=""/>
-                                    </div>
-                                
-                                    <div className="item-desc">
-                                        <span className="title">{item.title}</span>
-                                        <p>{item.desc}</p>
-                                        <p><b>Price: {item.price}$</b></p> 
-                                        <p>
-                                            <b>Quantity: {item.quantity}</b> 
-                                        </p>
-                                        <div className="add-remove">
-                                            <Link to="/cart"><i className="material-icons" onClick={()=>{this.handleAddQuantity(item.id)}}>arrow_drop_up</i></Link>
-                                            <Link to="/cart"><i className="material-icons" onClick={()=>{this.handleSubtractQuantity(item.id)}}>arrow_drop_down</i></Link>
-                                        </div>
-                                        <button className="waves-effect waves-light btn pink remove" onClick={()=>{this.handleRemove(item.id)}}>Remove</button>
-                                    </div>
-                                    
-                                </li>
-                         
+                        // <div>
+                        <Card className={classes.root}>
+                        <CardActionArea>
+                          <CardMedia
+                            className={classes.media}
+                            image={item.img}
+                            title="Contemplative Reptile"
+                          />
+                          <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                              {item.title}
+                            </Typography>
+                            <Typography gutterBottom variant="h5" component="h2">
+                              {item.price}
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+                         <Button size="small" variant = "contained" color="primary" onClick={()=>{handleAddQuantity(item.id)}} startIcon={<ExposurePlus1Icon/>}>
+                            Add 
+                          </Button>
+                          <Button size="small" color="secondary" variant = "contained"  onClick={()=>{handleSubtractQuantity(item.id)}} startIcon={<ExposureNeg1Icon/> }>
+                          Remove 
+                        </Button>
+                        
+                        
+                        
+                        <Button> Price: Rs {item.price} </Button>
+                        <Button>  Quantity: {item.quantity}</Button>
+                        
+                        </CardActions>
+                      </Card>
                     )
                 })
             ):
@@ -53,23 +89,38 @@ class Cart extends Component{
                 <p>Nothing.</p>
              )
        return(
-            <div className="container">
-                <div className="cart">
-                    <h5>You have ordered:</h5>
-                    <ul className="collection">
-                        {addedItems}
-                    </ul>
-                </div> 
-                      
-            </div>
+           <>
+          
+        <CssBaseline />
+        <h1> {props.total}</h1>
+        <Grid container item xs={12} spacing={3}>
+        
+       
+       {addedItems}
+      
+  </Grid>
+       
+        {/*  {addedItems.map((item) => { 
+        //     <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} > 
+        //     {item}
+        //     </Typography>
+        //  }) 
+        }
+       */}
+       
+        </>
+                   
+                       
+                         
        )
     }
-}
+
 
 
 const mapStateToProps = (state)=>{
     return{
         items: state.addedItems,
+        total: state.total
         //addedItems: state.addedItems
     }
 }

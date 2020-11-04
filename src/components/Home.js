@@ -14,6 +14,7 @@ import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+import Container from '@material-ui/core/Container';
 
 
 
@@ -32,7 +33,7 @@ const useStyles = makeStyles({
             props.addToCart(id); 
         }
         const classes = useStyles();
-        const inCart = props.addedItems;
+        
         const cardItems =  props.items.map((item)=>{
             return (
                 <Card className={classes.root}>
@@ -57,10 +58,9 @@ const useStyles = makeStyles({
                       <Button color="secondary"><FastfoodIcon /> {item.calories} calories</Button>
                     </CardContent>
                   </CardActionArea>
-                  {console.log(item.id)}
+                  {console.log(item.inCart)}
                   <CardActions>
-                   
-                    <Button
+                   {(!(item.inCart))? <div> <Button
                     variant="contained"
                     color="secondary"
                    
@@ -68,7 +68,19 @@ const useStyles = makeStyles({
                     onClick ={ () => handleClick(item.id)}
                   >
                     Add To cart
-                  </Button>
+                  </Button></div> : 
+                  <div><Button
+                  variant="contained"
+                  color="secondary"
+                 
+                  endIcon={<RemoveShoppingCartIcon/> }
+                  
+                >
+                  Remove From cart
+                </Button> <Button variant="contained"
+                color="secondary"  onClick ={ () => handleClick(item.id)} >{item.quant} </Button> </div>}
+
+                    
                    
                   </CardActions>
                 </Card>

@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-// import { Provider } from 'react-redux'
-// import App from './App';
+
 import App from './App';
-// import store from './store'
 import { Provider } from 'react-redux'
 
-// import Details from './Details';
-// import Routes from './Routes';
+
 import cartReducer from './reducers/cartReducer';
 import { createStore } from 'redux';
 

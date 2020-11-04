@@ -8,11 +8,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-
+import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
-      justifyContent:'space-around',
+      justifyContent:'space-between',
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -26,14 +26,23 @@ const useStyles = makeStyles((theme) => ({
     const classes = useStyles();
     return(
         <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static"  justify="space-between" >
         <Toolbar>
+        <Grid
+        justify="space-between" // Add it here :)
+        container 
+        spacing={24}
+      >
+      <Grid item>
+         <Link to ="/" style={{color:'white'}}>
+         <IconButton color="inherit" >
          
-          
-         
-          <Link to="/" style={{color:'white'}}>Order Now</Link>
+         Order
+         </IconButton>
+         </Link>
+         </Grid>   
         
-        
+         <Grid item>
           <Link to="/cart" style={{color:'white'}}> 
           <IconButton color="inherit" >
           <Badge badgeContent={props.items} color="secondary">
@@ -42,8 +51,8 @@ const useStyles = makeStyles((theme) => ({
          Cart
         </IconButton>
         </Link>
-       
-         
+        </Grid>
+        </Grid>
         </Toolbar>
       </AppBar>
     </div>      

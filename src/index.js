@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import App from './App';
 // import store from './store'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom';
+
 // import Details from './Details';
 // import Routes from './Routes';
 import cartReducer from './reducers/cartReducer';

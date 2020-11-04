@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {  } from 'react';
 import { connect } from 'react-redux'
 import { addToCart } from '../Actions/cartActions'
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,10 +11,10 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
-import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
 
 
 
@@ -87,9 +87,23 @@ const useStyles = makeStyles({
               );
         }) 
     return (
-        <div>
-            {cardItems}
+      <>
+          
+      <CssBaseline />
+      <div style={{ margin: 40 }}>
+         <Grid container spacing={1}>
+        <Grid container item xs={12} spacing={5}>
+        
+       
+       {cardItems}
+      
+  </Grid>
+  </Grid>
+  
+        
+            
         </div>
+        </>
     )
     
   }                                

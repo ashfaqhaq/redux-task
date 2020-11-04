@@ -1,6 +1,5 @@
-import React, { Component ,Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { removeItem,addQuantity,subtractQuantity} from '../Actions/cartActions'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -12,11 +11,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ExposurePlus1Icon from '@material-ui/icons/ExposurePlus1';
 import ExposureNeg1Icon from '@material-ui/icons/ExposureNeg1';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 
-import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles({
   root: {
@@ -62,7 +59,7 @@ const handleAddQuantity = (id)=>{
                               {item.title}
                             </Typography>
                             <Typography gutterBottom variant="h5" component="h2">
-                              {item.price}
+                             Rs {item.price}
                             </Typography>
                           </CardContent>
                         </CardActionArea>
@@ -76,7 +73,7 @@ const handleAddQuantity = (id)=>{
                         
                         
                         
-                        <Button> Price: Rs {item.price} </Button>
+                       
                         <Button>  Quantity: {item.quantity}</Button>
                         
                         </CardActions>
@@ -86,13 +83,13 @@ const handleAddQuantity = (id)=>{
             ):
 
              (
-                <p>Nothing.</p>
+               <h1> Please order something </h1> 
              )
        return(
            <>
           
         <CssBaseline />
-        <h1> {props.total}</h1>
+        <h1> The total is Rs {props.total}</h1>
          <div style={{ padding: 20 }}>
          <Grid container spacing={1}>
         <Grid container item xs={12} spacing={5}>

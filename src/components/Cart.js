@@ -70,8 +70,8 @@ const handleAddQuantity = (id)=>{
                          <Button size="small" variant = "contained" color="primary" onClick={()=>{handleAddQuantity(item.id)}} startIcon={<ExposurePlus1Icon/>}>
                             Add 
                           </Button>
-                          <Button size="small" color="secondary" variant = "contained"  onClick={()=>{handleSubtractQuantity(item.id)}} startIcon={<ExposureNeg1Icon/> }>
-                          Remove 
+                          <Button size="small" color="secondary" variant = "contained"  onClick={()=>{handleSubtractQuantity(item.id)}} startIcon={<ExposureNeg1Icon/>}>
+                           Remove 
                         </Button>
                         
                         
@@ -93,13 +93,16 @@ const handleAddQuantity = (id)=>{
           
         <CssBaseline />
         <h1> {props.total}</h1>
-        <Grid container item xs={12} spacing={3}>
+         <div style={{ padding: 20 }}>
+         <Grid container spacing={1}>
+        <Grid container item xs={12} spacing={5}>
         
        
        {addedItems}
       
   </Grid>
-       
+  </Grid>
+  </div>
         {/*  {addedItems.map((item) => { 
         //     <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} > 
         //     {item}

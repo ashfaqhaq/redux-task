@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Cart from './components/Cart'
 
+console.log("Empty statement")
 
 class App extends Component {
   render() {

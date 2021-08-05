@@ -5,6 +5,7 @@ import Item4 from '../images/Item4.jpg'
 import Item5 from '../images/Item5.jpg'
 import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY } from '../Actions/action-types/cart-actions'
 
+console.log("Redicer console")
 
 const initState = {
     items: [
